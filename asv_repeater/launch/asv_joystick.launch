@@ -1,0 +1,9 @@
+<launch>
+  <group ns="joystick">
+    <node pkg="asv_repeater" type="repeat_ctrl.py" name="repeater" output="screen" />
+    <node pkg="joy" type="joy_node" name="reader" output="screen">
+      <!-- the param is not tested yet! -->
+      <param name='dev' type='string' value='/dev/input/js0'/>
+    </node>
+  </group>
+</launch>
