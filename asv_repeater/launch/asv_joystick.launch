@@ -1,9 +1,12 @@
 <launch>
-  <group ns="joystick">
-    <node pkg="asv_repeater" type="repeat_ctrl.py" name="repeater" output="screen" />
+  <arg name="input" default="js0" />
+  <arg name="js_target" default="roboat_0" />
+
+  <group ns="$(arg js_target)">
+    <node pkg="asv_repeater" type="repeat_ctrl.py" name="$(arg input)repeat" output="screen" />
     <node pkg="joy" type="joy_node" name="reader" output="screen">
       <!-- the param is not tested yet! -->
-      <param name='dev' type='string' value='/dev/input/js0'/>
+      <param name='dev' type='string' value='/dev/input/$(arg input)'/>
     </node>
   </group>
 </launch>
